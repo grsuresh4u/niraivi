@@ -3,6 +3,8 @@
    Design tokens & global styles
    ============================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
   --terracotta:   #C0431A;
   --terracotta-dark: #9A3414;
@@ -351,8 +353,8 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-logo-mark {
-  width: clamp(260px, 40vw, 480px);
-  height: clamp(260px, 40vw, 480px);
+  width: clamp(200px, 38vw, 420px);
+  height: clamp(200px, 38vw, 420px);
   border-radius: 50%;
   background: transparent;
   border: none;
@@ -364,17 +366,16 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero-logo-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 50%;
-  box-shadow: none;
   border: none;
+  box-shadow: none;
 }
 
 .hero-logo-mark::before {
-  content: '';
-  position: absolute;
-  inset: -12px;
-  border-radius: 50%;
-  border: 1px solid rgba(201, 151, 58, 0.25);
+  display: none;
 }
 
 @keyframes gentle-float {
@@ -1168,11 +1169,11 @@ a { color: inherit; text-decoration: none; }
    ============================================= */
 
 @media (max-width: 1024px) {
-  .hero-content { grid-template-columns: 1fr; padding-top: 8rem; gap: 3rem; text-align: center; }
+  .hero-content { grid-template-columns: 1fr; padding-top: 6rem; padding-bottom: 4rem; gap: 2rem; text-align: center; }
   .hero-text p { margin: 0 auto 2.5rem; }
   .hero-btns { justify-content: center; }
   .hero-visual { order: -1; }
-  .hero-logo-mark { width: 260px; height: 260px; }
+  .hero-logo-mark { width: 180px; height: 180px; }
 
   .collections-grid { grid-template-columns: 1fr 1fr; }
   .collection-card:first-child { grid-row: span 1; grid-column: span 2; }
@@ -1218,6 +1219,14 @@ a { color: inherit; text-decoration: none; }
 
   .story-section { padding: 5rem 5vw; }
   .pillars { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .hero-content { padding-top: 5rem; padding-bottom: 3rem; gap: 1.5rem; }
+  .hero-logo-mark { width: 140px; height: 140px; }
+  .hero-text h1 { font-size: 3.2rem; }
+  .hero-btns { flex-direction: column; align-items: center; }
+  .hero-btns a { width: 100%; text-align: center; }
 }
 
 @media (prefers-reduced-motion: reduce) {
