@@ -354,7 +354,7 @@ a { color: inherit; text-decoration: none; }
   width: clamp(260px, 40vw, 480px);
   height: clamp(260px, 40vw, 480px);
   border-radius: 50%;
-  background: rgba(242, 234, 216, 0.08);
+  background: transparent;
   border: 1px solid rgba(242,234,216,0.15);
   display: flex;
   align-items: center;
