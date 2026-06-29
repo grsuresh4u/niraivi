@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collections — Niraivi</title>
+  <meta name="description" content="Browse Niraivi's handloom and cotton women's wear collections." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23C0431A'/><circle cx='50' cy='50' r='44' fill='none' stroke='%23C9973A' stroke-width='1.5'/><text x='50' y='70' font-size='60' font-family='Georgia,serif' fill='%23F2EAD8' text-anchor='middle' font-style='italic'>N</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── PAGE HEADER ── */
+    .page-hero {
+      background: var(--terracotta);
+      padding: 8rem 6vw 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.06;
+      background-image: repeating-linear-gradient(45deg, var(--cream) 0px, var(--cream) 1px, transparent 1px, transparent 40px);
+    }
+    .page-hero-inner { position: relative; z-index: 1; }
+    .page-hero .eyebrow { color: var(--gold-light); margin-bottom: 1rem; }
+    .page-hero h1 { color: var(--cream); }
+    .page-hero p { color: rgba(242,234,216,0.7); margin-top: 1rem; max-width: 500px; font-family: var(--font-display); font-size: 1.1rem; font-style: italic; font-weight: 300; }
+
+    /* ── FILTER BAR ── */
+    .filter-bar {
+      background: var(--warm-white);
+      border-bottom: 1px solid rgba(201,151,58,0.15);
+      padding: 1.25rem 6vw;
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .filter-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 0.5rem;
+    }
+    .filter-btn {
+      padding: 0.45rem 1.1rem;
+      border: 1px solid rgba(201,151,58,0.3);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--charcoal);
+      cursor: pointer;
+      transition: all 0.25s;
+      border-radius: 0;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--terracotta);
+      border-color: var(--terracotta);
+      color: white;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .shop-section { padding: 4rem 6vw 6rem; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+
+    /* ── PRODUCT CARD ── */
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .product-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: var(--cream);
+    }
+
+    /* 
+     * ════════════════════════════════════════════
+     * IMAGE PLACEHOLDER SYSTEM
+     * To replace with real images:
+     * 1. Add your image file to /images/products/
+     * 2. Replace the entire .product-placeholder div with:
+     *    <img src="images/products/your-image.jpg" 
+     *         alt="Product name" 
+     *         style="width:100%;height:100%;object-fit:cover;" />
+     * ════════════════════════════════════════════
+     */
+    .product-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Each product has its own colour identity */
+    .ph-1 { background: linear-gradient(160deg, #8B1A1A 0%, #C0431A 60%, #D4622A 100%); }
+    .ph-2 { background: linear-gradient(160deg, #1A3A2A 0%, #2D6A4A 60%, #4A8A6A 100%); }
+    .ph-3 { background: linear-gradient(160deg, #1A1A4A 0%, #2D2D8A 60%, #5050BB 100%); }
+    .ph-4 { background: linear-gradient(160deg, #4A2010 0%, #8A4020 60%, #C06030 100%); }
+    .ph-5 { background: linear-gradient(160deg, #3A1A2A 0%, #7A3A5A 60%, #AA5A8A 100%); }
+    .ph-6 { background: linear-gradient(160deg, #2A2A1A 0%, #5A5A2A 60%, #9A9A4A 100%); }
+    .ph-7 { background: linear-gradient(160deg, #1A2A3A 0%, #2A4A6A 60%, #4A7AAA 100%); }
+    .ph-8 { background: linear-gradient(160deg, #3A1010 0%, #7A2020 60%, #AA4040 100%); }
+    .ph-9 { background: linear-gradient(160deg, #2A1A0A 0%, #6A4A1A 60%, #AA7A3A 100%); }
+    .ph-10 { background: linear-gradient(160deg, #1A2A1A 0%, #3A5A3A 60%, #6A8A6A 100%); }
+    .ph-11 { background: linear-gradient(160deg, #2A1A3A 0%, #5A3A7A 60%, #8A6AAA 100%); }
+    .ph-12 { background: linear-gradient(160deg, #3A2A1A 0%, #7A5A3A 60%, #AA8A6A 100%); }
+
+    .ph-weave {
+      position: absolute;
+      inset: 0;
+      opacity: 0.12;
+      background: repeating-linear-gradient(
+        90deg, rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px, transparent 1px, transparent 10px
+      ), repeating-linear-gradient(
+        0deg, rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px, transparent 1px, transparent 20px
+      );
+    }
+
+    .ph-silhouette {
+      position: absolute;
+      bottom: 0; right: 8%;
+      width: 55%; height: 80%;
+      opacity: 0.15;
+      background: var(--cream);
+      clip-path: polygon(30% 0%, 70% 0%, 85% 8%, 92% 22%, 88% 42%, 96% 65%, 100% 100%, 0% 100%, 4% 65%, 12% 42%, 8% 22%, 15% 8%);
+    }
+
+    .ph-gold-hem {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 28px;
+      background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+      opacity: 0.6;
+    }
+
+    .ph-label {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: rgba(242,234,216,0.6);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* Hover overlay */
+    .product-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(28,20,16,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .product-card:hover .product-overlay { opacity: 1; }
+    .product-card:hover .product-img-wrap img,
+    .product-card:hover .product-placeholder { transform: scale(1.05); transition: transform 0.55s ease; }
+
+    .overlay-btn {
+      padding: 0.65rem 1.75rem;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+    }
+    .overlay-btn-primary { background: var(--gold); color: white; }
+    .overlay-btn-primary:hover { background: var(--gold-light); }
+    .overlay-btn-secondary { background: transparent; border: 1px solid rgba(242,234,216,0.6); color: var(--cream); }
+    .overlay-btn-secondary:hover { background: rgba(242,234,216,0.15); }
+
+    /* Wishlist heart */
+    .wishlist-btn {
+      position: absolute;
+      top: 0.9rem; right: 0.9rem;
+      width: 34px; height: 34px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.25s;
+      z-index: 3;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .wishlist-btn:hover { background: var(--terracotta); color: white; transform: scale(1.1); }
+    .wishlist-btn.liked { background: var(--terracotta); color: white; }
+
+    /* Badge */
+    .product-badge {
+      position: absolute;
+      top: 0.9rem; left: 0.9rem;
+      padding: 0.25rem 0.65rem;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+    .badge-new { background: var(--gold); color: white; }
+    .badge-sold { background: var(--charcoal); color: var(--cream); }
+    .badge-hot { background: var(--terracotta); color: white; }
+
+    /* Product info */
+    .product-info {
+      padding: 1.1rem 0 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-info .eyebrow { font-size: 0.6rem; margin-bottom: 0.35rem; }
+    .product-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+    .product-info p {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+      flex: 1;
+    }
+    .product-pricing {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .price-current {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--terracotta);
+    }
+    .price-original {
+      font-size: 0.82rem;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+    .price-tag {
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--terracotta);
+      padding: 0.15rem 0.45rem;
+    }
+
+    /* Colour swatches */
+    .product-swatches {
+      display: flex;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+    .swatch-dot {
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    }
+    .swatch-dot:hover { transform: scale(1.3); }
+
+    /* ── PRODUCT MODAL ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(28,20,16,0.75);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--warm-white);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      width: 36px; height: 36px;
+      background: var(--charcoal);
+      color: var(--cream);
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      transition: background 0.2s;
+    }
+    .modal-close:hover { background: var(--terracotta); }
+
+    .modal-img {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+    .modal-img .product-placeholder { height: 100%; }
+
+    .modal-details {
+      padding: 2.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .modal-details .eyebrow { margin-bottom: 0.75rem; }
+    .modal-details h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .modal-details .price-current { font-size: 1.4rem; margin-bottom: 1.25rem; }
+    .modal-details p {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    .modal-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .modal-colours {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.25rem;
+    }
+    .colour-option {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.1);
+    }
+    .colour-option:hover, .colour-option.selected { border-color: var(--gold); transform: scale(1.15); }
+
+    .modal-sizes {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .size-btn {
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(28,20,16,0.2);
+      background: transparent;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-btn:hover, .size-btn.selected {
+      background: var(--charcoal);
+      color: var(--cream);
+      border-color: var(--charcoal);
+    }
+
+    .modal-actions { display: flex; gap: 0.75rem; margin-top: auto; padding-top: 1rem; }
+    .modal-actions .btn-primary { flex: 1; text-align: center; padding: 0.9rem; }
+    .modal-actions .wishlist-btn { position: static; width: 44px; height: 44px; border-radius: 0; border: 1px solid rgba(28,20,16,0.2); box-shadow: none; }
+
+    .modal-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(201,151,58,0.2);
+    }
+    .meta-item p { font-size: 0.7rem; color: var(--muted); margin: 0; }
+    .meta-item strong { font-size: 0.78rem; color: var(--charcoal); display: block; margin-top: 0.2rem; }
+
+    /* ── TOAST NOTIFICATION ── */
+    .toast {
+      position: fixed;
+      bottom: 2rem; left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--charcoal);
+      color: var(--cream);
+      padding: 0.85rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      z-index: 300;
+      transition: transform 0.4s ease;
+      white-space: nowrap;
+      border-bottom: 2px solid var(--gold);
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ── CART COUNTER ── */
+    .cart-indicator {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      background: var(--terracotta);
+      color: white;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 20px rgba(192,67,26,0.4);
+      cursor: pointer;
+      z-index: 150;
+      transition: transform 0.2s;
+    }
+    .cart-indicator:hover { transform: scale(1.08); }
+    .cart-count {
+      position: absolute;
+      top: -4px; right: -4px;
+      background: var(--gold);
+      color: white;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      font-size: 0.65rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+      .modal { grid-template-columns: 1fr; max-height: 95vh; }
+      .modal-img { aspect-ratio: 4/3; }
+      .modal-details { padding: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo-img" aria-label="Niraivi home">
+      <img src="images/logo.png" alt="Niraivi" class="nav-logo-image" />
+      <span class="nav-logo-text">NIRAIVI</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="products.html" style="color:var(--gold)!important">Collections</a></li>
+      <li><a href="index.html#story">Our Story</a></li>
+      <li><a href="index.html#fabrics">Fabrics</a></li>
+      <li><a href="index.html#testimonials">Reviews</a></li>
+      <li><a href="index.html#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="nav-mobile" role="dialog" aria-modal="true">
+    <button class="nav-mobile-close">&times;</button>
+    <a href="products.html">Collections</a>
+    <a href="index.html#story">Our Story</a>
+    <a href="index.html#fabrics">Fabrics</a>
+    <a href="index.html#testimonials">Reviews</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow gold-rule">2026 Collection</p>
+      <h1 class="display-lg">All Collections</h1>
+      <p>Handloom and cotton women's wear — from timeless traditional styles to effortless everyday elegance.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar" role="toolbar" aria-label="Filter products">
+    <span class="filter-label">Filter:</span>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="traditional">Traditional</button>
+    <button class="filter-btn" data-filter="festive">Festive</button>
+    <button class="filter-btn" data-filter="everyday">Everyday</button>
+    <button class="filter-btn" data-filter="cotton">Cotton</button>
+    <button class="filter-btn" data-filter="new">New Arrivals</button>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <section class="shop-section">
+    <div class="product-grid" id="productGrid">
+
+      <!-- 
+        HOW TO ADD REAL IMAGES:
+        Replace <div class="product-placeholder ph-X"> with:
+        <img src="images/products/filename.jpg" alt="Product name" style="width:100%;height:100%;object-fit:cover;" />
+      -->
+
+      <!-- Product 1 -->
+      <div class="product-card" data-category="traditional festive" data-name="Heritage Handloom Saree" data-price="₹8,500" data-desc="A timeless handloom saree woven with traditional motifs. Pure cotton, naturally dyed, with a signature gold border." data-fabric="Handloom Cotton" data-care="Dry clean / Gentle hand wash" data-origin="Tamil Nadu">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-hot">Bestseller</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-1">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Traditional</p>
+          <h3>Heritage Handloom Saree</h3>
+          <p>Pure cotton, traditional motifs, gold border</p>
+          <div class="product-pricing">
+            <span class="price-current">₹8,500</span>
+            <span class="price-original">₹10,000</span>
+            <span class="price-tag">15% off</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#C0431A" title="Terracotta"></div>
+            <div class="swatch-dot" style="background:#1A3A2A" title="Forest Green"></div>
+            <div class="swatch-dot" style="background:#2D2D8A" title="Royal Blue"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-category="everyday cotton" data-name="Soft Cotton Everyday Wear" data-price="₹3,200" data-desc="Breathable, lightweight cotton perfect for daily wear. Subtle checks pattern with a comfortable drape." data-fabric="Pure Cotton" data-care="Machine wash gentle" data-origin="Coimbatore">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-new">New</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-2">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Everyday</p>
+          <h3>Soft Cotton Everyday Wear</h3>
+          <p>Breathable checks, comfortable drape</p>
+          <div class="product-pricing">
+            <span class="price-current">₹3,200</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#1A3A2A" title="Green"></div>
+            <div class="swatch-dot" style="background:#C9973A" title="Gold"></div>
+            <div class="swatch-dot" style="background:#F2EAD8" title="Cream"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-category="festive traditional" data-name="Festive Silk-Cotton Blend" data-price="₹12,000" data-desc="An elegant silk-cotton blend for festive occasions. Features intricate border work with a rich colour palette." data-fabric="Silk-Cotton Blend" data-care="Dry clean only" data-origin="Kanchipuram">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-3">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Festive</p>
+          <h3>Festive Silk-Cotton Blend</h3>
+          <p>Intricate border work, rich palette</p>
+          <div class="product-pricing">
+            <span class="price-current">₹12,000</span>
+            <span class="price-original">₹14,500</span>
+            <span class="price-tag">17% off</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#2D2D8A" title="Indigo"></div>
+            <div class="swatch-dot" style="background:#8B1A1A" title="Deep Red"></div>
+            <div class="swatch-dot" style="background:#2A6A4A" title="Emerald"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card" data-category="everyday cotton" data-name="Casual Printed Cotton" data-price="₹2,800" data-desc="Playful block prints on soft cotton. Easy to wear, easy to style — perfect for weekend outings or casual office days." data-fabric="Pure Cotton" data-care="Machine wash" data-origin="Jaipur">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-new">New</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-4">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Everyday</p>
+          <h3>Casual Printed Cotton</h3>
+          <p>Block prints, easy everyday styling</p>
+          <div class="product-pricing">
+            <span class="price-current">₹2,800</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#C06030" title="Rust"></div>
+            <div class="swatch-dot" style="background:#4A7AAA" title="Blue"></div>
+            <div class="swatch-dot" style="background:#6A8A6A" title="Sage"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card" data-category="festive traditional" data-name="Zari Border Handloom" data-price="₹9,800" data-desc="Rich handloom fabric with a pure gold zari border. Woven by artisans in Andhra Pradesh using age-old techniques." data-fabric="Handloom with Zari" data-care="Dry clean only" data-origin="Andhra Pradesh">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-5">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Traditional</p>
+          <h3>Zari Border Handloom</h3>
+          <p>Gold zari border, artisan woven</p>
+          <div class="product-pricing">
+            <span class="price-current">₹9,800</span>
+            <span class="price-original">₹11,500</span>
+            <span class="price-tag">15% off</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#7A3A5A" title="Plum"></div>
+            <div class="swatch-dot" style="background:#C0431A" title="Terracotta"></div>
+            <div class="swatch-dot" style="background:#1A3A2A" title="Green"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card" data-category="everyday" data-name="Linen-Cotton Fusion" data-price="₹4,500" data-desc="Modern linen-cotton blend with a minimalist aesthetic. Breathable and structured — perfect for professional settings." data-fabric="Linen-Cotton Blend" data-care="Hand wash / Dry clean" data-origin="Kerala">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-6">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Everyday</p>
+          <h3>Linen-Cotton Fusion</h3>
+          <p>Minimalist, structured, professional</p>
+          <div class="product-pricing">
+            <span class="price-current">₹4,500</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#9A9A4A" title="Olive"></div>
+            <div class="swatch-dot" style="background:#F2EAD8" title="Cream"></div>
+            <div class="swatch-dot" style="background:#5A5A2A" title="Khaki"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card" data-category="traditional festive" data-name="Temple Weave Classic" data-price="₹15,000" data-desc="An heirloom-quality temple weave with traditional motifs — peacocks, elephants, and lotus borders. Made for celebrations that matter." data-fabric="Pure Silk Handloom" data-care="Dry clean only" data-origin="Kanchipuram">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-hot">Premium</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-7">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Premium</p>
+          <h3>Temple Weave Classic</h3>
+          <p>Peacock & lotus motifs, heirloom quality</p>
+          <div class="product-pricing">
+            <span class="price-current">₹15,000</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#4A7AAA" title="Peacock Blue"></div>
+            <div class="swatch-dot" style="background:#8B1A1A" title="Deep Red"></div>
+            <div class="swatch-dot" style="background:#C9973A" title="Gold"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card" data-category="cotton everyday" data-name="Ikat Print Cotton" data-price="₹3,800" data-desc="Traditional ikat resist-dye technique on soft cotton. Each piece is slightly unique — a wearable piece of art." data-fabric="Ikat Cotton" data-care="Gentle hand wash" data-origin="Pochampally">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-new">New</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-8">
+            <div class="ph-weave"></div>
+            <div class="ph-silhouette"></div>
+            <div class="ph-gold-hem"></div>
+            <span class="ph-label">Add your image here</span>
+          </div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Cotton</p>
+          <h3>Ikat Print Cotton</h3>
+          <p>Traditional resist-dye, each piece unique</p>
+          <div class="product-pricing">
+            <span class="price-current">₹3,800</span>
+            <span class="price-original">₹4,500</span>
+            <span class="price-tag">16% off</span>
+          </div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#AA4040" title="Red"></div>
+            <div class="swatch-dot" style="background:#4A7AAA" title="Blue"></div>
+            <div class="swatch-dot" style="background:#6A8A6A" title="Green"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products 9–12 -->
+      <div class="product-card" data-category="traditional" data-name="Copper Gold Handloom" data-price="₹7,200" data-desc="Warm copper tones with gold thread detailing. A handloom that catches light beautifully at any occasion." data-fabric="Handloom Silk-Cotton" data-care="Dry clean" data-origin="Tamil Nadu">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-9"><div class="ph-weave"></div><div class="ph-silhouette"></div><div class="ph-gold-hem"></div><span class="ph-label">Add your image here</span></div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Traditional</p>
+          <h3>Copper Gold Handloom</h3>
+          <p>Warm copper tones, gold thread detail</p>
+          <div class="product-pricing"><span class="price-current">₹7,200</span></div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#AA7A3A"></div>
+            <div class="swatch-dot" style="background:#C0431A"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="everyday cotton" data-name="Sage Green Daily Wear" data-price="₹2,500" data-desc="Soft sage green cotton — the easiest thing to wear on a warm day. Pairs beautifully with gold jewellery." data-fabric="Pure Cotton" data-care="Machine wash" data-origin="Coimbatore">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-10"><div class="ph-weave"></div><div class="ph-silhouette"></div><div class="ph-gold-hem"></div><span class="ph-label">Add your image here</span></div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Everyday</p>
+          <h3>Sage Green Daily Wear</h3>
+          <p>Soft cotton, easy warm-weather wear</p>
+          <div class="product-pricing"><span class="price-current">₹2,500</span></div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#6A8A6A"></div>
+            <div class="swatch-dot" style="background:#F2EAD8"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="festive traditional" data-name="Plum Blossom Silk" data-price="₹11,500" data-desc="Deep plum silk with delicate blossom motifs. A showstopper for evening celebrations and family gatherings." data-fabric="Pure Silk" data-care="Dry clean only" data-origin="Mysore">
+        <div class="product-img-wrap">
+          <span class="product-badge badge-hot">Trending</span>
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-11"><div class="ph-weave"></div><div class="ph-silhouette"></div><div class="ph-gold-hem"></div><span class="ph-label">Add your image here</span></div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Festive</p>
+          <h3>Plum Blossom Silk</h3>
+          <p>Deep plum with delicate motifs</p>
+          <div class="product-pricing"><span class="price-current">₹11,500</span><span class="price-original">₹13,000</span><span class="price-tag">12% off</span></div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#8A6AAA"></div>
+            <div class="swatch-dot" style="background:#5A3A7A"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="everyday cotton" data-name="Warm Earth Cotton" data-price="₹3,100" data-desc="Earthy terracotta-inspired cotton with subtle geometric weave. Grounded, warm, and effortlessly elegant." data-fabric="Handloom Cotton" data-care="Hand wash" data-origin="Rajasthan">
+        <div class="product-img-wrap">
+          <button class="wishlist-btn" aria-label="Add to wishlist">♡</button>
+          <div class="product-placeholder ph-12"><div class="ph-weave"></div><div class="ph-silhouette"></div><div class="ph-gold-hem"></div><span class="ph-label">Add your image here</span></div>
+          <div class="product-overlay">
+            <button class="overlay-btn overlay-btn-primary" onclick="openModal(this.closest('.product-card'))">Quick View</button>
+            <button class="overlay-btn overlay-btn-secondary" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </div>
+        <div class="product-info">
+          <p class="eyebrow">Cotton</p>
+          <h3>Warm Earth Cotton</h3>
+          <p>Earthy tones, geometric weave</p>
+          <div class="product-pricing"><span class="price-current">₹3,100</span></div>
+          <div class="product-swatches">
+            <div class="swatch-dot" style="background:#AA8A6A"></div>
+            <div class="swatch-dot" style="background:#C0431A"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRODUCT QUICK-VIEW MODAL -->
+  <div class="modal-overlay" id="productModal" role="dialog" aria-modal="true" aria-label="Product details">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+      <div class="modal-img" id="modalImg"></div>
+      <div class="modal-details">
+        <p class="eyebrow" id="modalCategory">Traditional</p>
+        <h2 id="modalName">Product Name</h2>
+        <div class="product-pricing" style="margin-bottom:1rem">
+          <span class="price-current" id="modalPrice">₹0</span>
+        </div>
+        <p id="modalDesc">Description</p>
+
+        <p class="modal-label">Choose Colour</p>
+        <div class="modal-colours" id="modalColours"></div>
+
+        <p class="modal-label">Choose Size</p>
+        <div class="modal-sizes">
+          <button class="size-btn selected">Free Size</button>
+          <button class="size-btn">S (34)</button>
+          <button class="size-btn">M (36)</button>
+          <button class="size-btn">L (38)</button>
+          <button class="size-btn">XL (40)</button>
+        </div>
+
+        <div class="modal-actions">
+          <a href="#" class="btn-primary" onclick="addToCartFromModal(); return false;">Add to Cart</a>
+          <button class="wishlist-btn" aria-label="Wishlist" style="position:static;width:44px;height:44px;border-radius:0;border:1px solid rgba(28,20,16,0.2);box-shadow:none">♡</button>
+        </div>
+
+        <div class="modal-meta" id="modalMeta"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- CART BUBBLE -->
+  <div class="cart-indicator" id="cartIndicator" title="Cart" style="display:none">
+    🛍
+    <span class="cart-count" id="cartCount">0</span>
+  </div>
+
+  <style>
+    .nav-logo-img { display:flex; align-items:center; gap:0.6rem; text-decoration:none; }
+    .nav-logo-image { width:36px; height:36px; border-radius:50%; object-fit:cover; border:1px solid rgba(242,234,216,0.3); transition:border-color 0.4s; }
+    .nav.scrolled .nav-logo-image { border-color:rgba(192,67,26,0.3); }
+    .nav-logo-text { font-family:var(--font-display); font-size:1.4rem; font-weight:500; letter-spacing:0.08em; color:var(--warm-white); transition:color 0.4s; }
+    .nav.scrolled .nav-logo-text { color:var(--terracotta); }
+  </style>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── FILTER SYSTEM ──────────────────────────────
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.product-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        cards.forEach(card => {
+          const cats = card.dataset.category || '';
+          const show = filter === 'all' || cats.includes(filter);
+          card.style.display = show ? 'flex' : 'none';
+          card.style.opacity = show ? '1' : '0';
+        });
+      });
+    });
+
+    // ── WISHLIST TOGGLE ────────────────────────────
+    document.querySelectorAll('.wishlist-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        btn.classList.toggle('liked');
+        btn.textContent = btn.classList.contains('liked') ? '♥' : '♡';
+        showToast(btn.classList.contains('liked') ? '♥ Added to wishlist' : 'Removed from wishlist');
+      });
+    });
+
+    // ── SIZE SELECTOR ──────────────────────────────
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.closest('.modal-sizes').querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+    });
+
+    // ── CART ───────────────────────────────────────
+    let cartCount = 0;
+    function addToCart(btn) {
+      cartCount++;
+      document.getElementById('cartCount').textContent = cartCount;
+      document.getElementById('cartIndicator').style.display = 'flex';
+      showToast('🛍 Added to cart!');
+    }
+    function addToCartFromModal() {
+      cartCount++;
+      document.getElementById('cartCount').textContent = cartCount;
+      document.getElementById('cartIndicator').style.display = 'flex';
+      closeModal();
+      showToast('🛍 Added to cart!');
+    }
+
+    // ── MODAL ──────────────────────────────────────
+    function openModal(card) {
+      const modal = document.getElementById('productModal');
+      const imgEl = card.querySelector('.product-placeholder, img');
+
+      // Clone image into modal
+      const modalImg = document.getElementById('modalImg');
+      modalImg.innerHTML = '';
+      const clone = imgEl.cloneNode(true);
+      clone.style.height = '100%';
+      modalImg.appendChild(clone);
+
+      // Fill in details from data attributes
+      document.getElementById('modalName').textContent = card.dataset.name;
+      document.getElementById('modalPrice').textContent = card.dataset.price;
+      document.getElementById('modalDesc').textContent = card.dataset.desc;
+      document.getElementById('modalCategory').textContent = card.querySelector('.eyebrow')?.textContent || '';
+
+      // Colours from swatches
+      const swatches = card.querySelectorAll('.swatch-dot');
+      const colourContainer = document.getElementById('modalColours');
+      colourContainer.innerHTML = '';
+      swatches.forEach((s, i) => {
+        const c = document.createElement('div');
+        c.className = 'colour-option' + (i === 0 ? ' selected' : '');
+        c.style.background = s.style.background;
+        c.title = s.title;
+        c.addEventListener('click', () => {
+          colourContainer.querySelectorAll('.colour-option').forEach(o => o.classList.remove('selected'));
+          c.classList.add('selected');
+        });
+        colourContainer.appendChild(c);
+      });
+
+      // Meta info
+      document.getElementById('modalMeta').innerHTML = `
+        <div class="meta-item"><p>Fabric</p><strong>${card.dataset.fabric || '—'}</strong></div>
+        <div class="meta-item"><p>Origin</p><strong>${card.dataset.origin || '—'}</strong></div>
+        <div class="meta-item"><p>Care</p><strong>${card.dataset.care || '—'}</strong></div>
+        <div class="meta-item"><p>Delivery</p><strong>5–7 business days</strong></div>
+      `;
+
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('productModal').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on overlay click
+    document.getElementById('productModal').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+
+    // ── TOAST ──────────────────────────────────────
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+  </script>
+</body>
+</html>
