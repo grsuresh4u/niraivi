@@ -9,9 +9,9 @@
    instagram: handle without the @
    ─────────────────────────────────────────── */
 const NIRAIVI_CONTACT = {
-  whatsapp: '',
-  instagram: '',
-  email: '',
+  whatsapp: '919677574259',
+  instagram: 'niraivi_the_label',
+  email: 'susithra.141@gmail.com',
 };
 
 document.documentElement.classList.add('js');
