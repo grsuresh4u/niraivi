@@ -1,27 +1,43 @@
-# Niraivi — Where Elegance Feels Complete
+# Niraivi — Pure Kanchipuram Handloom Silk Sarees
 
-Premium Indian ethnic fashion website. Static HTML/CSS/JS — no build step required.
+Silk Mark certified pure Kanchipuram silk sarees, sourced directly from weaver
+families in Kanchipuram. Static HTML/CSS/JS — no build step required.
 
 ## Deployment (GitHub Pages)
 
-1. Push this folder's contents to a GitHub repository
-2. Go to **Settings → Pages**
-3. Set Source to **Deploy from a branch**, branch: `main`, folder: `/ (root)`
-4. Your site will be live at `https://<username>.github.io/<repo-name>`
+The site is served by GitHub Pages from the `main` branch, root folder
+(**Settings → Pages**). Merging into `main` publishes the change.
+
+## Contact details
+
+Every WhatsApp, Instagram and email button on the site is filled in from one
+place — the `NIRAIVI_CONTACT` block at the top of `js/main.js`:
+
+```js
+const NIRAIVI_CONTACT = {
+  whatsapp: '919876543210',   // country code + number, digits only
+  instagram: 'niraivi',       // handle without the @
+  email: 'hello@example.com',
+};
+```
+
+Until a value is set, its buttons scroll to the contact section instead.
 
 ## Structure
 
 ```
 niraivi/
-├── index.html          # Main page
-├── products.html       # Product catalogue
+├── index.html          # Home: occasions, craft, motifs, story, how to buy, authenticity, care, FAQ
+├── products.html       # The Collection, filterable by occasion (products.html#bridal etc.)
 ├── css/
 │   └── style.css       # All styles
 ├── js/
-│   └── main.js         # Interactions
+│   └── main.js         # Contact links, mobile menu, filters, scroll reveal
 ├── images/
 │   ├── logo.webp       # Brand logo, round with transparent background (hero)
 │   ├── logo-small.webp # Small brand logo (header and footer)
+│   ├── og-image.jpg    # 1200×630 preview shown when the link is shared
+│   ├── gopuram.svg     # Drawn temple gopuram behind the home-page banner
 │   ├── logo.png        # High-resolution master logo (not loaded by the site)
 │   ├── logo.jpg        # Original brand logo
 │   └── favicon-logo.jpg # Browser tab icon
@@ -29,18 +45,32 @@ niraivi/
 └── README.md
 ```
 
+## Adding a saree to the collection
+
+Copy one `<article class="product">` block in `products.html` and change:
+
+- `data-occasion` — one or more of `bridal`, `festive`, `lightweight`, `pastels`
+- the colours in `style="--body:…;--border:…;--zari:…"` (body, border, zari)
+- the name, the Border / Motifs / Weight rows, and the WhatsApp `data-message`
+
+When real photographs are ready, replace the `<div class="saree" …>` swatch
+with `<img src="images/sarees/your-photo.jpg" alt="…" />`.
+
 ## Fonts
 
-Loaded from Google Fonts CDN:
+Loaded from Google Fonts:
 - **Cormorant Garamond** — display headings
 - **Inter** — body & UI
+- **Noto Serif Tamil** — Tamil text (நிறைவி, motif names)
 
 ## Colours
 
 | Token | Hex | Usage |
 |-------|-----|-------|
-| Terracotta | `#C0431A` | Brand primary |
-| Cream | `#F2EAD8` | Light surfaces |
-| Gold | `#C9973A` | Accents |
-| Charcoal | `#1C1410` | Dark sections |
-| Warm White | `#FAF6F0` | Page background |
+| Maroon | `#5C0F1E` | Brand primary, dark sections |
+| Maroon deep | `#3A0812` | Footer, announcement bar |
+| Arakku | `#8E1B1B` | Accents, links |
+| Temple gold | `#B8862B` | Zari accents, temple border |
+| Gold light | `#DDBB72` | Gold on dark backgrounds |
+| Ivory | `#FBF6EC` | Page background |
+| Ivory deep | `#F3E9D6` | Alternate sections |
