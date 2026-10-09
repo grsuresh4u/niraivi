@@ -37,6 +37,7 @@ niraivi/
 │   ├── logo.webp       # Brand logo, round with transparent background (hero)
 │   ├── logo-small.webp # Small brand logo (header and footer)
 │   ├── og-image.jpg    # 1200×630 preview shown when the link is shared
+│   ├── gopuram.svg     # Drawn temple gopuram behind the home-page banner
 │   ├── logo.png        # High-resolution master logo (not loaded by the site)
 │   ├── logo.jpg        # Original brand logo
 │   └── favicon-logo.jpg # Browser tab icon

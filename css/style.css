@@ -314,6 +314,17 @@ h1 em, h2 em { font-style: italic; color: var(--gold); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2.25rem; }
 
 .hero-visual { display: flex; justify-content: center; }
+/* Drawn gopuram standing on the temple border, behind the medallion */
+.hero-gopuram {
+  position: absolute;
+  bottom: 14px;
+  right: max(1vw, calc((100vw - var(--max)) / 2 - 90px));
+  height: 92%;
+  width: auto;
+  max-width: none;
+  opacity: 0.26;
+  pointer-events: none;
+}
 .hero-medallion {
   position: relative;
   width: min(100%, 420px);
@@ -346,6 +357,7 @@ h1 em, h2 em { font-style: italic; color: var(--gold); }
   .hero-visual { order: -1; }
   .hero-medallion { width: min(62vw, 260px); padding: 9px; }
   .hero-medallion::after { inset: -14px; }
+  .hero-gopuram { right: auto; left: 50%; transform: translateX(-50%); height: 96%; opacity: 0.1; }
 }
 @media (max-width: 480px) {
   .hero-actions .btn { width: 100%; }
