@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — Niraivi</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#5C0F1E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@500;600&display=swap" rel="stylesheet" />
+  <!-- Self-contained styles: GitHub Pages serves this page at whatever address was missing,
+       so relative links to css/ or images/ cannot be relied on here. -->
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #5C0F1E;
+      color: #F6EBD5;
+      font-family: 'Inter', system-ui, sans-serif;
+      text-align: center;
+    }
+    .brand { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.6rem; letter-spacing: 0.16em; }
+    .eyebrow { margin-top: 3rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: #DDBB72; }
+    h1 { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; font-size: clamp(2.2rem, 7vw, 3.4rem); line-height: 1.15; margin: 1rem 0; }
+    h1 em { color: #DDBB72; }
+    p { color: rgba(246, 235, 213, 0.74); max-width: 30rem; margin: 0 auto; line-height: 1.7; }
+    .actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 2.25rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.95rem 1.8rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid #F6EBD5;
+      color: #F6EBD5;
+    }
+    .btn-gold { background: #B8862B; border-color: #B8862B; color: #fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="brand">NIRAIVI</p>
+    <p class="eyebrow">Page not found</p>
+    <h1>This page has <em>slipped</em> off the loom</h1>
+    <p>The page you were looking for isn't here. Our Kanchipuram silk sarees are just a click away.</p>
+    <div class="actions">
+      <a class="btn btn-gold" data-path="products.html" href="products.html">See the collection</a>
+      <a class="btn" data-path="" href="./">Back to home</a>
+    </div>
+  </main>
+  <script>
+    // Point the buttons at the site root, however deep the missing address was.
+    var base = location.pathname.indexOf('/niraivi/') === 0 || location.pathname === '/niraivi' ? '/niraivi/' : '/';
+    document.querySelectorAll('[data-path]').forEach(function (a) { a.href = base + a.dataset.path; });
+  </script>
+</body>
+</html>
