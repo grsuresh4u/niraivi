@@ -14,12 +14,15 @@ Premium Indian ethnic fashion website. Static HTML/CSS/JS — no build step requ
 ```
 niraivi/
 ├── index.html          # Main page
+├── products.html       # Product catalogue
 ├── css/
 │   └── style.css       # All styles
 ├── js/
 │   └── main.js         # Interactions
 ├── images/
-│   └── logo.jpg        # Brand logo
+│   ├── logo.png        # Brand logo (used on the site)
+│   ├── logo.jpg        # Original brand logo
+│   └── favicon-logo.jpg # Browser tab icon
 ├── _config.yml         # GitHub Pages config
 └── README.md
 ```
