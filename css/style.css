@@ -362,12 +362,9 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   justify-content: center;
   position: relative;
-  overflow: hidden;
   animation: gentle-float 6s ease-in-out infinite;
 }
 
-/* logo.png is a round logo on a black square; zoom in slightly so the
-   circular crop hides the black edge around the circle */
 .hero-logo-mark img {
   width: 100%;
   height: 100%;
@@ -375,7 +372,6 @@ a { color: inherit; text-decoration: none; }
   border-radius: 50%;
   border: none;
   box-shadow: none;
-  transform: scale(1.04);
 }
 
 .hero-logo-mark::before {

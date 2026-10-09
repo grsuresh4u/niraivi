@@ -20,7 +20,9 @@ niraivi/
 ├── js/
 │   └── main.js         # Interactions
 ├── images/
-│   ├── logo.png        # Brand logo (used on the site)
+│   ├── logo.webp       # Brand logo, round with transparent background (hero)
+│   ├── logo-small.webp # Small brand logo (header and footer)
+│   ├── logo.png        # High-resolution master logo (not loaded by the site)
 │   ├── logo.jpg        # Original brand logo
 │   └── favicon-logo.jpg # Browser tab icon
 ├── _config.yml         # GitHub Pages config
